@@ -30,6 +30,7 @@ It explores:
 
 
 ## Project Structure
+```
 ├── report/
 │ └── Report_24BCE10891_AdityaTalreja.pdf
 ├── scripts/
@@ -41,6 +42,7 @@ It explores:
 ├── screenshots/
 │ └── (script output images)
 └── README.md
+```
 
 
 ---
