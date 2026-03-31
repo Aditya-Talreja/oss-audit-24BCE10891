@@ -24,7 +24,12 @@ It explores:
 - Explore Linux system architecture and ecosystem
 - Develop hands-on shell scripting skills
 - Connect theory with real-world command-line usage
+  
 
+---
+
+
+## Project Structure
 ├── report/
 │ └── Report_24BCE10891_AdityaTalreja.pdf
 ├── scripts/
