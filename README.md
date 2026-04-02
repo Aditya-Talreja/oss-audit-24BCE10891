@@ -1,134 +1,107 @@
-# The Open Source Audit — Linux Kernel
-**Repository:** oss-audit-24BCE10891
+oss-audit-24BCE10891
+Student Name: Aditya Talreja
+Registration Number: 24BCE10891
+Course: Open Source Software (OSS NGMC)
+Chosen Software: Linux Kernel
+Slot: E11
 
-A companion repository for a Linux Kernel audit report. Includes five fully commented shell scripts demonstrating Linux system inspection, kernel module management, automation, and open-source principles. Learn how the kernel works, explore practical commands, and see transparency in action.
+What This Project Is
+This is my capstone project for the Open Source Software course. I picked the Linux Kernel as my subject because it has one of the most interesting origin stories in software history — a student who just wanted a free OS ended up changing the entire world of computing.
 
----
+The project has two parts:
 
-## Project Overview
-This project is a comprehensive audit of the Linux Kernel, developed as part of the Open Source Software course.  
-It explores:
+A written report covering the history, licence, ethics, Linux footprint, ecosystem, and a comparison with proprietary alternatives
+Five shell scripts that demonstrate practical Linux command-line skills
+Chosen Software — Linux Kernel
+The Linux Kernel is the core of the Linux operating system. It was created by Linus Torvalds in 1991 and is licensed under the GNU General Public License version 2 (GPL v2). It currently powers most of the world's web servers, every Android device, and the top 500 supercomputers on the planet.
 
-- The origin and philosophy of Linux
-- Licensing (GPL v2) and software freedoms
-- Ethical considerations in open source
-- Linux system structure and ecosystem
-- Comparison with proprietary systems
-- Practical shell scripting implementation
+Shell Scripts
+There are 5 scripts in this repo. Here's what each one does:
 
----
+script1_system_identity.sh
+Prints a welcome screen with basic system information — kernel version, distro name, logged-in user, home directory, uptime, and current date/time. Also mentions the GPL v2 licence that covers the OS.
 
-## Objectives
-- Understand the role of the Linux Kernel in modern computing
-- Analyze open-source licensing and ethical implications
-- Explore Linux system architecture and ecosystem
-- Develop hands-on shell scripting skills
-- Connect theory with real-world command-line usage
-  
+Concepts used: variables, command substitution $(), echo, uname, whoami, date
 
----
+script2_package_inspector.sh
+Checks if a given package is installed on the system using rpm -q. If it is, shows the version, licence, and summary. Uses a case statement to print a short note about the open-source philosophy behind each package.
 
+Concepts used: if-then-else, case statement, rpm -qi, pipes with grep
 
-## Project Structure
-```
-├── report/
-│ └── Report_24BCE10891_AdityaTalreja.pdf
-├── scripts/
-│ ├── script1_system_identity.sh
-│ ├── script2_package_inspector.sh
-│ ├── script3_disk_auditor.sh
-│ ├── script4_log_analyzer.sh
-│ └── script5_manifesto.sh
-├── screenshots/
-│ └── (script output images)
-└── README.md
-```
+script3_disk_auditor.sh
+Loops through a list of important Linux directories (/etc, /var/log, /home, /usr/bin, /tmp, /boot) and prints the permissions, owner, group, and size of each one. Also checks the running kernel's module directory specifically.
 
+Concepts used: for loop, arrays, if [ -d ], ls -ld, du -sh, awk, cut
 
----
+script4_log_analyzer.sh
+Reads a log file line by line and counts how many lines contain a given keyword. Defaults to searching for "error" if no keyword is provided. Prints the total count and shows the last 5 matching lines.
 
-## Shell Scripts Included
+Concepts used: while IFS= read -r, if-then inside loop, counter with $(( )), command-line arguments $1 $2, grep -i, tail
 
-### 1. System Identity Report
-Displays system-level information such as:
-- Kernel version
-- User
-- Uptime
-- Date & time
+script5_manifesto.sh
+Asks the user 3 questions interactively, then writes a short personal open-source philosophy statement using their answers and saves it to a .txt file. Displays the result at the end.
 
-### 2. FOSS Package Inspector
-- Checks if a package is installed
-- Uses conditional logic
-- Displays a philosophy note using case statements
+Concepts used: read -p, string building with variables, writing to file with > and >>, date, cat, alias concept shown in comments
 
-### 3. Disk & Permission Auditor
-- Iterates through system directories
-- Displays permissions, ownership, and size
-- Demonstrates loops and file inspection
+How to Run the Scripts
+Step 1 — Clone the repo
+git clone https://github.com/Aditya-Talreja/oss-audit-24BCE10891.git
+cd oss-audit-24BCE10891
+Step 2 — Give execute permission to the scripts
+chmod +x script1_system_identity.sh
+chmod +x script2_package_inspector.sh
+chmod +x script3_disk_auditor.sh
+chmod +x script4_log_analyzer.sh
+chmod +x script5_manifesto.sh
+Step 3 — Run each script
+Script 1 — System Identity Report
 
-### 4. Log File Analyzer
-- Reads log files line by line
-- Counts keyword occurrences
-- Displays last matching entries
+./script1_system_identity.sh
+Script 2 — FOSS Package Inspector
+Pass a package name as argument. Defaults to kernel if nothing is given.
 
-### 5. Manifesto Generator
-- Interactive script
-- Generates a personalized open-source philosophy
-- Writes output to a file
+./script2_package_inspector.sh kernel
+./script2_package_inspector.sh git
+./script2_package_inspector.sh vlc
+Script 3 — Disk and Permission Auditor
 
----
+./script3_disk_auditor.sh
+Script 4 — Log File Analyzer
+Pass a log file path. Optionally pass a keyword (defaults to error).
 
-## Concepts Demonstrated
-- Variables and command substitution
-- Conditional statements (`if-else`)
-- Loops (`for`, `while`)
-- Case statements
-- File handling and text processing (`grep`, `awk`, `cut`)
-- Input/output redirection
+./script4_log_analyzer.sh /var/log/messages
+./script4_log_analyzer.sh /var/log/messages warning
+Note: You may need sudo to read some log files depending on your system.
 
----
+Script 5 — Open Source Manifesto Generator
 
-## Execution Environment
-The scripts were executed in a Unix-based macOS Terminal environment, which closely mirrors Linux command-line behavior.  
-All concepts and commands are fully compatible with standard Linux systems.
+./script5_manifesto.sh
+It will ask you 3 questions and save your manifesto to manifesto_[yourusername].txt.
 
----
+Dependencies
+All scripts use standard tools available on any Linux system by default:
 
-## Key Learnings
-- Open source enables transparency, collaboration, and innovation
-- Licensing (GPL vs MIT) directly impacts software freedom
-- Linux forms the backbone of modern infrastructure
-- Shell scripting is powerful for automation and system analysis
+Tool	Purpose
+bash	Shell interpreter — needed to run all scripts
+uname	Getting kernel and system info
+whoami	Getting current username
+uptime	System uptime
+date	Current date and time
+rpm	Package info (RPM-based systems like Fedora/RHEL)
+ls, du	Directory permissions and disk usage
+grep, awk, cut	Text filtering and field extraction
+If you are on a Debian/Ubuntu system, Script 2 uses rpm -q which may not be available. Replace it with dpkg -l $PACKAGE and dpkg -s $PACKAGE for equivalent output.
 
----
+Project Report
+The full written report (Report_24BCE10891_AdityaTalreja.pdf) is submitted separately on the VITyarthi portal. It covers:
 
-## Comparison Insight
-Linux provides:
-
-- Greater control
-- Transparency
-- Cost efficiency
-
-compared to proprietary systems like Windows and macOS, especially in server and development environments.
-
----
-
-## References
-- GNU Project — Free Software Definition
-- Linux Kernel Archives ([kernel.org](https://www.kernel.org/))
-- Open Source Initiative
-- Linux Foundation
-- Bash Manual
-
----
-
-## Author
-**Name:** Aditya Talreja  
-**Registration No:** 24BCE10891  
-**Course:** Open Source Software  
-
----
-
-## Final Note
-This project reflects both theoretical understanding and practical implementation of open-source concepts through Linux and shell scripting.
----
+Origin story of the Linux Kernel
+GPL v2 licence analysis and the four freedoms
+Ethics of open source software
+Linux footprint — directories, permissions, update model
+FOSS ecosystem — Android, Docker, LAMP stack, community governance
+Comparison table: Linux vs Windows / macOS
+All 5 scripts with code, screenshots, and explanations
+Notes
+All scripts have been tested on Fedora Linux
+Scripts are kept simple and readable — every non-obvious line has a comment explaining what it does
